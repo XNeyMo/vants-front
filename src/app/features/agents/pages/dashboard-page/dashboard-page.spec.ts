@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -10,6 +12,9 @@ import { Header } from '../../../../shared/ui/organisms/header/header';
 import { Hero } from '../../ui/molecules/hero/hero';
 import { Title } from '../../ui/atoms/title/title';
 import { Description } from '../../ui/atoms/description/description';
+import { AgentsGrid } from '../../ui/organisms/agents-grid/agents-grid';
+import { AgentsPageModel } from '../../models/agents-page.model';
+import { GetAgentsPageUseCase } from '../../core/get-agents-page.use-case';
 
 describe('DashboardPage', () => {
   let component: DashboardPage;
@@ -35,10 +40,34 @@ describe('DashboardPage', () => {
     });
 
 
+    const resolvedData: AgentsPageModel = {
+      items: [
+        {
+          id: '1',
+          name: 'Gekko',
+          role: 'Initiator',
+          roleIconUrl: '/icons/role.png',
+          imageUrl: '/icons/agent.png',
+          href: '/agents/gekko',
+          delayMs: 0
+        }
+      ],
+      currentPage: 1,
+      totalPages: 4
+    };
+
     await TestBed.configureTestingModule({
       imports: [DashboardPage],
       providers: [
         provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: { data: of({ agentsPage: resolvedData }) }
+        },
+        {
+          provide: GetAgentsPageUseCase,
+          useValue: { execute: () => of(resolvedData) }
+        },
         {
           provide: TranslocoService,
           useValue: {
@@ -63,6 +92,7 @@ describe('DashboardPage', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('app-header')).toBeTruthy();
     expect(element.querySelector('app-hero')).toBeTruthy();
+    expect(element.querySelector('app-agents-grid')).toBeTruthy();
     expect(element.textContent).toContain('agents.hero.dashboard.title');
     expect(element.textContent).toContain('agents.hero.dashboard.highlight');
   });

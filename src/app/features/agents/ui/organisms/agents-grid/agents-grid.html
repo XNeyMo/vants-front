@@ -1,0 +1,20 @@
+<div class="flex flex-col space-y-8">
+	<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+		@for (item of items(); track item.id) {
+			<app-agent-card
+				[name]="item.name"
+				[role]="item.role"
+				[roleIconUrl]="item.roleIconUrl"
+				[imageUrl]="item.imageUrl"
+				[href]="item.href"
+				[delayMs]="item.delayMs ?? 0"
+			></app-agent-card>
+		}
+	</div>
+	<app-pagination-controls
+		[currentPage]="currentPage()"
+		[totalPages]="totalPages()"
+		(previous)="previous.emit()"
+		(next)="next.emit()"
+	></app-pagination-controls>
+</div>

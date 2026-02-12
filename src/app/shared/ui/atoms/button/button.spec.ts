@@ -47,4 +47,13 @@ describe('Button', () => {
     expect(button.type).toBe('submit');
     expect(button.disabled).toBe(true);
   });
+
+  it('should render pagination variant with label', () => {
+    fixture.componentRef.setInput('variant', 'pagination');
+    fixture.componentRef.setInput('label', 'Siguiente');
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    expect(element.textContent).toContain('Siguiente');
+  });
 });

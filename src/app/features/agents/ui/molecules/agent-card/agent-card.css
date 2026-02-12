@@ -1,0 +1,9 @@
+.clip-angular {
+  clip-path: polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up .5s ease-out forwards;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+}

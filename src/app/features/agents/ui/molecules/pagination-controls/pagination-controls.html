@@ -1,0 +1,21 @@
+<div class="flex items-center justify-center gap-4 pt-4">
+	<app-button
+		variant="pagination"
+		[label]="'ANTERIOR'"
+		[disabled]="isFirst()"
+		(click)="onPrevious()"
+	>
+		<span icon class="icon-left h-4 w-4" aria-hidden="true"></span>
+	</app-button>
+	<span class="font-display text-sm tracking-widest text-muted-foreground">
+		{{ currentPage() }} <span class="text-primary">/</span> {{ totalPages() }}
+	</span>
+	<app-button
+		variant="pagination"
+		[label]="'SIGUIENTE'"
+		[disabled]="isLast()"
+		(click)="onNext()"
+	>
+		<span icon-end class="icon-right h-4 w-4" aria-hidden="true"></span>
+	</app-button>
+</div>

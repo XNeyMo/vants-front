@@ -1,0 +1,45 @@
+<div
+	class="group relative overflow-hidden border border-border bg-card transition-all duration-300 hover:border-primary/50 hover:glow-red clip-angular animate-fade-in-up"
+	[style.animationDelay]="delayMs() + 'ms'"
+>
+	<div
+		class="absolute inset-0 opacity-30 transition-opacity duration-300 group-hover:opacity-50"
+		style="background: linear-gradient(135deg, rgba(55, 28, 92, 0.267), rgba(15, 25, 35, 0.133));"
+	></div>
+	<app-button
+		variant="icon-only"
+		class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100"
+		ariaLabel="Add to favorites"
+	>
+		<span icon class="icon-heart h-5 w-5" aria-hidden="true"></span>
+	</app-button>
+	<a class="relative z-[1] flex flex-col" [attr.href]="href()">
+		<div class="relative h-48 sm:h-56 flex items-center justify-center overflow-hidden">
+			<img
+				[src]="imageUrl()"
+				[alt]="name()"
+				class="h-36 w-36 sm:h-44 sm:w-44 object-contain transition-transform duration-500 group-hover:scale-110"
+				loading="lazy"
+			/>
+		</div>
+		<div class="relative border-t border-border p-4">
+			<div class="flex items-center justify-between">
+				<div>
+					<app-subtitle [text]="name()"></app-subtitle>
+					<div class="mt-1 flex items-center gap-1.5">
+						<img
+							[src]="roleIconUrl()"
+							[alt]="role()"
+							class="h-3.5 w-3.5 brightness-75"
+						/>
+						<app-subsubtitle [text]="role()"></app-subsubtitle>
+					</div>
+				</div>
+				<span
+					class="icon-right h-5 w-5 text-muted-foreground transition-all duration-300 group-hover:text-primary group-hover:translate-x-1"
+					aria-hidden="true"
+				></span>
+			</div>
+		</div>
+	</a>
+</div>

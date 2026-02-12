@@ -11,6 +11,7 @@
     --color-muted-foreground: #818c98;
     --color-border: #2d3339;
     --color-background: #0C1218;
+    --color-card: #1d2125;
 }
 
 .clip-angular-sm {
@@ -31,6 +32,49 @@
     background-color: currentColor;
     -webkit-mask: url("/icons/crosshair.svg") no-repeat center / contain;
     mask: url("/icons/crosshair.svg") no-repeat center / contain;
+}
+
+.text-glow-red {
+    text-shadow: 0 0 20px hsl(355 100% 64% / 0.5);
+}
+
+.line-accent {
+    position: relative;
+    display: inline-block;
+}
+
+.line-accent::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #ff4757;
+}
+
+.icon-heart,
+.icon-right,
+.icon-left {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: currentColor;
+}
+
+.icon-heart {
+    -webkit-mask: url("/icons/heart.svg") no-repeat center / contain;
+    mask: url("/icons/heart.svg") no-repeat center / contain;
+}
+
+.icon-right {
+    -webkit-mask: url("/icons/right.svg") no-repeat center / contain;
+    mask: url("/icons/right.svg") no-repeat center / contain;
+}
+
+.icon-left {
+    -webkit-mask: url("/icons/left.svg") no-repeat center / contain;
+    mask: url("/icons/left.svg") no-repeat center / contain;
 }
 
 body {

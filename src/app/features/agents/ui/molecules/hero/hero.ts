@@ -7,7 +7,6 @@ import { Description } from '../../atoms/description/description';
   selector: 'app-hero',
   imports: [Title, Description, TranslocoModule],
   templateUrl: './hero.html',
-  styleUrls: ['./hero.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Hero {

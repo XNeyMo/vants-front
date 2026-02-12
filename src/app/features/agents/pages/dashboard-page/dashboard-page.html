@@ -1,11 +1,10 @@
-<app-header></app-header>
-<main class="w-full px-4 py-8">
-	<app-hero
-		[title]="'agents.hero.dashboard.title'"
-		[highlight]="'agents.hero.dashboard.highlight'"
-		[description]="'agents.hero.dashboard.description'"
-	></app-hero>
-	<div class="mt-6 grid min-h-60 place-items-center rounded-2xl border border-dashed border-slate-300 text-slate-500">
-		<p>Grid placeholder (SSR target).</p>
-	</div>
-</main>
+<app-agents-page-shell
+	[titleKey]="'agents.hero.dashboard.title'"
+	[highlightKey]="'agents.hero.dashboard.highlight'"
+	[descriptionKey]="'agents.hero.dashboard.description'"
+	[items]="agents()"
+	[currentPage]="currentPage()"
+	[totalPages]="totalPages()"
+	(previous)="goToPrevious()"
+	(next)="goToNext()"
+></app-agents-page-shell>

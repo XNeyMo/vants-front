@@ -8,7 +8,6 @@ export type LinkVariant = 'primary';
   selector: 'app-link',
   imports: [RouterLink, RouterLinkActive, TranslocoModule],
   templateUrl: './link.html',
-  styleUrl: './link.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Link {
@@ -16,8 +15,9 @@ export class Link {
   readonly labelKey = input<string | null>(null);
   readonly to = input<string | any[]>('/');
 
-  readonly activeClass =
-    'relative uppercase flex items-center gap-2 px-4 py-2 font-display text-sm font-semibold tracking-wider transition-colors text-primary';
-  readonly inactiveClass =
-    'relative uppercase flex items-center gap-2 px-4 py-2 font-display text-sm font-semibold tracking-wider transition-colors text-muted-foreground hover:text-foreground';
+  private readonly baseClass =
+    'relative uppercase flex items-center gap-2 px-4 py-2 font-display text-sm font-semibold tracking-wider transition-colors';
+
+  readonly activeClass = `${this.baseClass} text-primary`;
+  readonly inactiveClass = `${this.baseClass} text-muted-foreground hover:text-foreground`;
 }

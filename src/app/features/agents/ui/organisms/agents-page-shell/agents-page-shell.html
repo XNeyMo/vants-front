@@ -1,0 +1,15 @@
+<app-header></app-header>
+<main class="w-full px-4 py-8 flex flex-col space-y-8">
+	<app-hero
+		[title]="titleKey()"
+		[highlight]="highlightKey()"
+		[description]="descriptionKey()"
+	></app-hero>
+	<app-agents-grid
+		[items]="items()"
+		[currentPage]="currentPage()"
+		[totalPages]="totalPages()"
+		(previous)="previous.emit()"
+		(next)="next.emit()"
+	></app-agents-grid>
+</main>

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 @Component({
-  selector: 'app-description',
+  selector: 'app-subtitle',
   imports: [],
-  templateUrl: './description.html',
+  templateUrl: './subtitle.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Description {
+export class Subtitle {
   readonly text = input<string>('');
 }

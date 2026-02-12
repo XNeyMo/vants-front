@@ -9,4 +9,5 @@
 	@if (label() && variant() !== 'icon-only') {
 		<span [class]="labelClass()">{{ label() }}</span>
 	}
+	<ng-content select="[icon-end]"></ng-content>
 </button>

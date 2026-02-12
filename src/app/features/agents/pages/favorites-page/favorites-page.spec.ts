@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -10,6 +11,8 @@ import { Header } from '../../../../shared/ui/organisms/header/header';
 import { Hero } from '../../ui/molecules/hero/hero';
 import { Title } from '../../ui/atoms/title/title';
 import { Description } from '../../ui/atoms/description/description';
+import { AgentsGrid } from '../../ui/organisms/agents-grid/agents-grid';
+import { GetFavoriteAgentsUseCase } from '../../core/get-favorite-agents.use-case';
 
 describe('FavoritesPage', () => {
   let component: FavoritesPage;
@@ -40,6 +43,10 @@ describe('FavoritesPage', () => {
       providers: [
         provideRouter([]),
         {
+          provide: GetFavoriteAgentsUseCase,
+          useValue: { execute: () => of([]) }
+        },
+        {
           provide: TranslocoService,
           useValue: {
             getActiveLang: () => 'en',
@@ -63,6 +70,7 @@ describe('FavoritesPage', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('app-header')).toBeTruthy();
     expect(element.querySelector('app-hero')).toBeTruthy();
+    expect(element.querySelector('app-agents-grid')).toBeTruthy();
     expect(element.textContent).toContain('agents.hero.favorites.title');
     expect(element.textContent).toContain('agents.hero.favorites.highlight');
   });
