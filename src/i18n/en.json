@@ -7,5 +7,9 @@
       "en": "English",
       "es": "Spanish"
     }
+  },
+  "nav": {
+    "agents": "Agents",
+    "favorites": "Favorites"
   }
 }

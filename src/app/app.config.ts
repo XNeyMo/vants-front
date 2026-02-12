@@ -5,8 +5,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideTransloco } from '@jsverse/transloco';
 
 import { routes } from './app.routes';
-import { translocoConfigFactory } from './i18n/transloco.config';
 import { TranslocoHttpLoader } from './i18n/transloco-loader';
+import { translocoConfigFactory } from './i18n/transloco.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [

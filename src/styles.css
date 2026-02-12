@@ -1,3 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap");
 @import "tailwindcss";
+
+@theme {
+    --color-primary: #ff4757;
+    --color-secondary: #EAE6E1;
+    --color-accent: #3B82F6;
+    --color-foreground: #e8eaed;
+    --color-muted-foreground: #818c98;
+    --color-border: #2d3339;
+    --color-background: #0C1218;
+}
+
+.clip-angular-sm {
+	clip-path: polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+}
+
+.icon-globe {
+    width: 1rem;
+    height: 1rem;
+    background-color: currentColor;
+    -webkit-mask: url("/icons/globe.svg") no-repeat center / contain;
+    mask: url("/icons/globe.svg") no-repeat center / contain;
+}
+
+.icon-crosshair {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: currentColor;
+    -webkit-mask: url("/icons/crosshair.svg") no-repeat center / contain;
+    mask: url("/icons/crosshair.svg") no-repeat center / contain;
+}
+
+body {
+        background-color: var(--color-background);
+        color: var(--color-secondary);
+        font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.font-display {
+    font-family: "Rajdhani", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.font-body {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Rajdhani", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Colors are defined in @theme for Tailwind utilities. */

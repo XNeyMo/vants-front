@@ -4,7 +4,7 @@ import { AgentDetailsPage } from './features/details/pages/agent-details-page/ag
 import { FavoritesPage } from './features/agents/pages/favorites-page/favorites-page';
 
 export const routes: Routes = [
-	{ path: '', component: DashboardPage },
+	{ path: '', pathMatch: 'full', component: DashboardPage },
 	{ path: 'agents/:uuid', component: AgentDetailsPage },
 	{ path: 'favorites', component: FavoritesPage }
 ];
