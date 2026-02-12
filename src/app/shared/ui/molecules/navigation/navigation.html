@@ -1,0 +1,9 @@
+<nav aria-label="Primary">
+	<ul class="flex items-center gap-6">
+		@for (item of items(); track item.path) {
+			<li>
+				<app-link [label]="item.label" [to]="item.path"></app-link>
+			</li>
+		}
+	</ul>
+</nav>
