@@ -12,7 +12,6 @@ export type NavigationItem = {
   selector: 'app-navigation',
   imports: [Link, TranslocoModule],
   templateUrl: './navigation.html',
-  styleUrl: './navigation.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Navigation {

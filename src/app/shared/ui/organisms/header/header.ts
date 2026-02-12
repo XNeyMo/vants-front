@@ -7,7 +7,6 @@ import { LanguageSwitcher } from '../../molecules/language-switcher/language-swi
   selector: 'app-header',
   imports: [Logo, Navigation, LanguageSwitcher],
   templateUrl: './header.html',
-  styleUrl: './header.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Header {

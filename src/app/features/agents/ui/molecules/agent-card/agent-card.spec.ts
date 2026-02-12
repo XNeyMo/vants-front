@@ -33,5 +33,8 @@ describe('AgentCard', () => {
     expect(element.textContent).toContain('Gekko');
     expect(element.textContent).toContain('Initiator');
     expect(element.querySelector('a')?.getAttribute('href')).toBe('/agents/gekko');
+    expect(element.querySelector('app-button')).toBeTruthy();
+    const roleIcon = element.querySelector('img[alt="Initiator"]') as HTMLImageElement;
+    expect(roleIcon?.getAttribute('src')).toBe('/icons/role.png');
   });
 });

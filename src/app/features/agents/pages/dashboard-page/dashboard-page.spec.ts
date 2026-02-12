@@ -10,8 +10,8 @@ import { Navigation } from '../../../../shared/ui/molecules/navigation/navigatio
 import { TranslocoPipeMock } from '../../../../i18n/transloco-pipe.mock';
 import { Header } from '../../../../shared/ui/organisms/header/header';
 import { Hero } from '../../ui/molecules/hero/hero';
-import { Title } from '../../ui/atoms/title/title';
-import { Description } from '../../ui/atoms/description/description';
+import { Title } from '../../../../shared/ui/atoms/title/title';
+import { Description } from '../../../../shared/ui/atoms/description/description';
 import { AgentsGrid } from '../../ui/organisms/agents-grid/agents-grid';
 import { AgentsPageModel } from '../../models/agents-page.model';
 import { GetAgentsPageUseCase } from '../../core/get-agents-page.use-case';
@@ -36,6 +36,12 @@ describe('DashboardPage', () => {
     TestBed.overrideComponent(Hero, {
       set: {
         imports: [Title, Description, TranslocoPipeMock]
+      }
+    });
+
+    TestBed.overrideComponent(AgentsGrid, {
+      set: {
+        template: '<div data-test="agents-grid"></div>'
       }
     });
 

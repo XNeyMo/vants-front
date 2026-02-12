@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 import { Button } from '../../../../../shared/ui/atoms/button/button';
 
 @Component({
   selector: 'app-pagination-controls',
-  imports: [Button],
+  imports: [Button, TranslocoModule],
   templateUrl: './pagination-controls.html',
-  styleUrl: './pagination-controls.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PaginationControls {

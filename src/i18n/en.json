@@ -25,5 +25,14 @@
         "description": "Agents selected for your personal roster."
       }
     }
+  },
+  "pagination": {
+    "previous": "PREVIOUS",
+    "next": "NEXT"
+  },
+  "details": {
+    "backToRoster": "BACK TO ROSTER",
+    "addToFavorites": "ADD TO FAVORITES",
+    "abilities": "ABILITIES"
   }
 }

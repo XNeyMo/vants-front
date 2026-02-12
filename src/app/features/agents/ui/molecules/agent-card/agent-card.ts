@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
-import { Subtitle } from '../../atoms/subtitle/subtitle';
-import { Subsubtitle } from '../../atoms/subsubtitle/subsubtitle';
+import { Subtitle } from '../../../../../shared/ui/atoms/subtitle/subtitle';
+import { Subsubtitle } from '../../../../../shared/ui/atoms/subsubtitle/subsubtitle';
 import { Button } from '../../../../../shared/ui/atoms/button/button';
 
 @Component({
   selector: 'app-agent-card',
   imports: [Subtitle, Subsubtitle, Button],
   templateUrl: './agent-card.html',
-  styleUrl: './agent-card.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AgentCard {

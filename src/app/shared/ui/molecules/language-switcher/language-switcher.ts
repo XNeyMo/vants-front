@@ -6,7 +6,6 @@ import { Button } from '../../atoms/button/button';
   selector: 'app-language-switcher',
   imports: [Button],
   templateUrl: './language-switcher.html',
-  styleUrl: './language-switcher.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LanguageSwitcher {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-export type ButtonVariant = 'icon-text' | 'icon-only' | 'primary' | 'pagination';
+export type ButtonVariant = 'icon-text' | 'icon-only' | 'primary' | 'pagination' | 'back-link' | 'favorite';
 
 @Component({
   selector: 'app-button',
@@ -15,6 +15,8 @@ export class Button {
   readonly disabled = input<boolean>(false);
   readonly title = input<string | null>(null);
   readonly ariaLabel = input<string | null>(null);
+  readonly href = input<string | null>(null);
+  readonly pressed = input<boolean>(false);
 
   readonly buttonClass = computed(() => {
     const common = 'cursor-pointer transition-colors disabled:cursor-not-allowed';
@@ -31,6 +33,18 @@ export class Button {
           'group p-2 text-foreground hover:text-primary'
         ].join(' ');
       case 'pagination':
+        return [
+          common,
+          'flex items-center gap-1 clip-angular-sm border border-border bg-card px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-wider text-foreground transition-all hover:border-primary hover:text-primary disabled:opacity-30 disabled:hover:border-border disabled:hover:text-foreground'
+        ].join(' ');
+      case 'back-link':
+        return [
+          'inline-flex items-center gap-2 font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary'
+        ].join(' ');
+      case 'favorite':
+        return this.pressed()
+          ? 'inline-flex items-center gap-2 clip-angular-sm border px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider transition-all duration-300 w-fit border-primary bg-primary/10 text-primary glow-red'
+          : 'inline-flex items-center gap-2 clip-angular-sm border border-border bg-card px-6 py-3 font-display text-sm font-semibold uppercase tracking-wider transition-all duration-300 w-fit text-foreground hover:border-primary hover:text-primary';
       default:
         return [
           common,

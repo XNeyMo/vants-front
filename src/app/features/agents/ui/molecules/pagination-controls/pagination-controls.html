@@ -1,7 +1,7 @@
 <div class="flex items-center justify-center gap-4 pt-4">
 	<app-button
 		variant="pagination"
-		[label]="'ANTERIOR'"
+		[label]="'pagination.previous' | transloco"
 		[disabled]="isFirst()"
 		(click)="onPrevious()"
 	>
@@ -12,7 +12,7 @@
 	</span>
 	<app-button
 		variant="pagination"
-		[label]="'SIGUIENTE'"
+		[label]="'pagination.next' | transloco"
 		[disabled]="isLast()"
 		(click)="onNext()"
 	>

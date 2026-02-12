@@ -1,5 +1,62 @@
 <app-header></app-header>
-<main class="mx-auto w-full max-w-5xl px-6 py-10">
-	<h1 class="text-2xl font-semibold text-slate-900">Agent details</h1>
-	<p class="mt-4 text-slate-600">Details placeholder.</p>
+<main class="w-full px-4 py-8 flex flex-col space-y-8">
+	<app-button
+		variant="back-link"
+		[label]="'details.backToRoster' | transloco"
+		href="/"
+		ariaLabel="Volver al roster"
+	></app-button>
+
+	<div class="relative overflow-hidden border border-border bg-card clip-angular">
+		<div class="absolute inset-0 opacity-40" style="background: linear-gradient(rgba(29, 40, 70, 0.2) 0%, transparent 60%);"></div>
+		<div class="relative grid md:grid-cols-2 gap-6 p-6 sm:p-8">
+			<div class="flex items-center justify-center">
+				<img [src]="agent().fullPortraitUrl" [alt]="agent().displayName" class="h-72 sm:h-96 object-contain drop-shadow-2xl">
+			</div>
+			
+			<div class="flex flex-col justify-center space-y-6">
+				<div class="flex items-center gap-2">
+					<img [src]="agent().role?.iconUrl" [alt]="roleIconAlt()" class="h-4 w-4 brightness-75">
+					<span class="font-display text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{{ agent().role?.name }}</span>
+				</div>
+				
+				<h1 class="font-display text-4xl sm:text-5xl font-bold tracking-[0.15em] text-foreground">
+					{{ agent().displayName }}
+				</h1>
+				
+				<p class="text-sm leading-relaxed text-muted-foreground max-w-md">
+					{{ agent().description }}
+				</p>
+				
+				<app-button
+					variant="favorite"
+					[label]="'details.addToFavorites' | transloco"
+					ariaLabel="Agregar a favoritos"
+					[pressed]="isFavorite()"
+					(click)="toggleFavorite()"
+				>
+					<svg
+						icon
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						class="h-4 w-4 transition-all"
+						[class.fill-current]="isFavorite()"
+						[class.scale-110]="isFavorite()"
+						aria-hidden="true"
+					>
+						<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+					</svg>
+				</app-button>
+			</div>
+		</div>
+	</div>
+
+	<app-abilities-section [abilities]="agent().abilities"></app-abilities-section>
 </main>

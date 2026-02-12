@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Title } from '../../atoms/title/title';
-import { Description } from '../../atoms/description/description';
+import { Title } from '../../../../../shared/ui/atoms/title/title';
+import { Description } from '../../../../../shared/ui/atoms/description/description';
 
 @Component({
   selector: 'app-hero',

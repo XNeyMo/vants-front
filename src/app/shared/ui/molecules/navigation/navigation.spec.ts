@@ -47,4 +47,9 @@ describe('Navigation', () => {
     expect(element.textContent).toContain('nav.agents');
     expect(element.textContent).toContain('nav.favorites');
   });
+
+  it('should render icons for each item', () => {
+    const icons = fixture.nativeElement.querySelectorAll('svg');
+    expect(icons.length).toBe(2);
+  });
 });

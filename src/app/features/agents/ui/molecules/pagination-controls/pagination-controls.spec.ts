@@ -1,12 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PaginationControls } from './pagination-controls';
+import { TranslocoPipeMock } from '../../../../../i18n/transloco-pipe.mock';
+import { Button } from '../../../../../shared/ui/atoms/button/button';
 
 describe('PaginationControls', () => {
   let component: PaginationControls;
   let fixture: ComponentFixture<PaginationControls>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(PaginationControls, {
+      set: {
+        imports: [Button, TranslocoPipeMock]
+      }
+    });
+
     await TestBed.configureTestingModule({
       imports: [PaginationControls]
     })
@@ -38,4 +46,6 @@ describe('PaginationControls', () => {
     const buttons = fixture.nativeElement.querySelectorAll('button');
     expect(buttons[1].disabled).toBe(true);
   });
+
+  
 });

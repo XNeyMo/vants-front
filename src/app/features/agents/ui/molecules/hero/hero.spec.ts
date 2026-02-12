@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Hero } from './hero';
-import { Title } from '../../atoms/title/title';
-import { Description } from '../../atoms/description/description';
+import { Title } from '../../../../../shared/ui/atoms/title/title';
+import { Description } from '../../../../../shared/ui/atoms/description/description';
 import { TranslocoPipeMock } from '../../../../../i18n/transloco-pipe.mock';
 
 describe('Hero', () => {
@@ -40,5 +40,15 @@ describe('Hero', () => {
     expect(element.textContent).toContain('agents.hero.dashboard.title');
     expect(element.textContent).toContain('agents.hero.dashboard.highlight');
     expect(element.textContent).toContain('agents.hero.dashboard.description');
+  });
+
+  it('should support translated inputs', () => {
+    fixture.componentRef.setInput('title', 'agents.hero.favorites.title');
+    fixture.componentRef.setInput('highlight', 'agents.hero.favorites.highlight');
+    fixture.componentRef.setInput('description', 'agents.hero.favorites.description');
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    expect(element.textContent).toContain('agents.hero.favorites.title');
   });
 });

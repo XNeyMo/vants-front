@@ -1,12 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AgentsGrid } from './agents-grid';
+import { AgentCard } from '../../molecules/agent-card/agent-card';
+import { PaginationControls } from '../../molecules/pagination-controls/pagination-controls';
 
 describe('AgentsGrid', () => {
   let component: AgentsGrid;
   let fixture: ComponentFixture<AgentsGrid>;
 
   beforeEach(async () => {
+    TestBed.overrideComponent(AgentCard, {
+      set: {
+        template: '<div data-test="agent-card"></div>'
+      }
+    });
+
+    TestBed.overrideComponent(PaginationControls, {
+      set: {
+        template: '<div data-test="pagination"></div>'
+      }
+    });
+
     await TestBed.configureTestingModule({
       imports: [AgentsGrid]
     })
