@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Header } from '../../../../shared/ui/organisms/header/header';
+import { Hero } from '../../ui/molecules/hero/hero';
 
 @Component({
   selector: 'app-favorites-page',
-  imports: [Header],
+  imports: [Header, Hero],
   templateUrl: './favorites-page.html',
-  styleUrl: './favorites-page.css',
+  styleUrls: ['./favorites-page.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FavoritesPage {

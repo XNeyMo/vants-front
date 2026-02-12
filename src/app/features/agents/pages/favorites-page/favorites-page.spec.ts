@@ -6,6 +6,10 @@ import { FavoritesPage } from './favorites-page';
 import { Link } from '../../../../shared/ui/atoms/link/link';
 import { Navigation } from '../../../../shared/ui/molecules/navigation/navigation';
 import { TranslocoPipeMock } from '../../../../i18n/transloco-pipe.mock';
+import { Header } from '../../../../shared/ui/organisms/header/header';
+import { Hero } from '../../ui/molecules/hero/hero';
+import { Title } from '../../ui/atoms/title/title';
+import { Description } from '../../ui/atoms/description/description';
 
 describe('FavoritesPage', () => {
   let component: FavoritesPage;
@@ -23,6 +27,13 @@ describe('FavoritesPage', () => {
         imports: [Link, TranslocoPipeMock]
       }
     });
+
+    TestBed.overrideComponent(Hero, {
+      set: {
+        imports: [Title, Description, TranslocoPipeMock]
+      }
+    });
+
 
     await TestBed.configureTestingModule({
       imports: [FavoritesPage],
@@ -48,9 +59,11 @@ describe('FavoritesPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render the header and page title', () => {
+  it('should render the header and hero copy', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('app-header')).toBeTruthy();
-    expect(element.querySelector('h1')?.textContent).toContain('Favorite agents');
+    expect(element.querySelector('app-hero')).toBeTruthy();
+    expect(element.textContent).toContain('agents.hero.favorites.title');
+    expect(element.textContent).toContain('agents.hero.favorites.highlight');
   });
 });

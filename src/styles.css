@@ -51,4 +51,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Rajdhani", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+main,
+header > div,
+footer > div {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Colors are defined in @theme for Tailwind utilities. */

@@ -11,5 +11,19 @@
   "nav": {
     "agents": "Agentes",
     "favorites": "Favoritos"
+  },
+  "agents": {
+    "hero": {
+      "dashboard": {
+        "title": "SELECCIONA TU",
+        "highlight": "AGENTE",
+        "description": "Explora el roster completo de agentes. Cada uno con habilidades unicas disenadas para dominar el campo de batalla."
+      },
+      "favorites": {
+        "title": "TUS",
+        "highlight": "FAVORITOS",
+        "description": "Agentes seleccionados para tu roster personal."
+      }
+    }
   }
 }
