@@ -185,6 +185,16 @@
 <main class="main">
   <div class="content">
     <div class="left-side">
+      <label for="lang" style="display:block;margin-bottom:0.5rem;">{{ 'app.language' | transloco }}</label>
+      <select id="lang" (change)="setLanguage($any($event.target).value)" style="padding:0.5rem;border:1px solid var(--gray-400);border-radius:0.5rem;">
+        @for (lang of languages; track lang) {
+          <option [value]="lang">{{ 'app.lang.' + lang | transloco }}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="content">
+    <div class="left-side">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 982 239"
@@ -230,8 +240,8 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
-      <h1>Hello, {{ title() }}</h1>
-      <p>Congratulations! Your app is running. 🎉</p>
+      <h1>{{ 'app.title' | transloco }} {{ title() }}</h1>
+      <p>{{ 'app.subtitle' | transloco }}</p>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">

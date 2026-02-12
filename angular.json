@@ -22,6 +22,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/i18n",
+                "output": "i18n"
               }
             ],
             "styles": [

@@ -1,0 +1,11 @@
+{
+  "app": {
+    "title": "Hola,",
+    "subtitle": "Tu aplicacion esta funcionando.",
+    "language": "Idioma",
+    "lang": {
+      "en": "Ingles",
+      "es": "Espanol"
+    }
+  }
+}
