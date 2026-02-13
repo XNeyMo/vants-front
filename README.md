@@ -88,7 +88,7 @@ Evidencia del funcionamiento de la plataforma:
   <a href="github/evidence.mp4">Descargar video de demostración</a>
 </video>
 
-**Nota:** Si estás viendo esto en GitHub y el video no se reproduce, puedes [descargar el video aquí](evidence.mp4).
+**Nota:** Si estás viendo esto en GitHub y el video no se reproduce, puedes [descargar el video aquí](github/evidence.mp4).
 
 ## Arquitectura
 
