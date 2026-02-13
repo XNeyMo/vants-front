@@ -1,23 +1,53 @@
+# ===============================
+# 1️⃣ Build Stage
+# ===============================
 FROM node:20-slim AS build
 
+# Instalar dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci
+# Copiar archivos de dependencias
+COPY package.json ./
 
+# Instalar todas las dependencias usando npm install (más flexible para binarios nativos)
+RUN npm install
+
+# Copiar el código fuente
 COPY . .
+
+# Build del proyecto Angular con SSR
 RUN npm run build
 
-FROM node:20-slim AS runtime
+# ===============================
+# 2️⃣ Production Stage
+# ===============================
+FROM node:20-slim
 
 WORKDIR /app
-ENV NODE_ENV=production
 
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
+# Copiar los archivos buildados
 COPY --from=build /app/dist ./dist
 
+# Copiar package files y node_modules necesarios
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/node_modules ./node_modules
+
+# Variables de entorno
+ENV NODE_ENV=production
+ENV PORT=4000
+
+# Exponer el puerto
 EXPOSE 4000
 
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=40s \
+  CMD node -e "require('http').get('http://localhost:4000', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Ejecutar el servidor SSR
 CMD ["node", "dist/vants-front/server/server.mjs"]

@@ -36,6 +36,35 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Docker Deployment
+
+This project includes Docker support for SSR (Server-Side Rendering) deployment with Tailwind CSS v4.
+
+### Build and run with Docker
+
+```bash
+# Build the Docker image
+docker build -t vants-front .
+
+# Run the container
+docker run -p 4000:4000 vants-front
+```
+
+### Using Docker Compose
+
+```bash
+# Start the application
+docker-compose up -d
+
+# Stop the application
+docker-compose down
+
+# View logs
+docker-compose logs -f
+```
+
+The application will be available at `http://localhost:4000`.
+
 ## Running unit tests
 
 To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:

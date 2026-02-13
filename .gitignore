@@ -42,3 +42,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Docker
+.env
+.env.local
+docker-compose.override.yml

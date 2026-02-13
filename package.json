@@ -4,10 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:vants-front": "node dist/vants-front/server/server.mjs"
+    "serve:ssr:vants-front": "node dist/vants-front/server/server.mjs",
+    "docker:build": "docker build -t vants-front .",
+    "docker:run": "docker run -p 4000:4000 vants-front",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
   "prettier": {
     "printWidth": 100,
