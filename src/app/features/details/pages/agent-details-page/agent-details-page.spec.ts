@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
+import { provideStore } from '@ngrx/store';
 
 import { AgentDetailsPage } from './agent-details-page';
 import { Link } from '../../../../shared/ui/atoms/link/link';
@@ -12,6 +13,7 @@ import { AgentDetailsModel } from '../../models/agent-details.model';
 import { Header } from '../../../../shared/ui/organisms/header/header';
 import { AbilitiesSection } from '../../ui/organisms/abilities-section/abilities-section';
 import { Button } from '../../../../shared/ui/atoms/button/button';
+import { favoritesFeature } from '../../../agents/state/favorites/favorites.reducer';
 
 describe('AgentDetailsPage', () => {
   let component: AgentDetailsPage;
@@ -52,6 +54,7 @@ describe('AgentDetailsPage', () => {
       imports: [AgentDetailsPage],
       providers: [
         provideRouter([]),
+        provideStore({ [favoritesFeature.name]: favoritesFeature.reducer }),
         {
           provide: ActivatedRoute,
           useValue: {
@@ -96,7 +99,7 @@ describe('AgentDetailsPage', () => {
 
   it('should toggle favorite state when button clicked', () => {
     const button = fixture.nativeElement.querySelector(
-      'button[aria-label="Agregar a favoritos"]'
+      'button[aria-label="details.addToFavorites"]'
     ) as HTMLButtonElement;
     expect(button).toBeTruthy();
     expect(button.getAttribute('aria-pressed')).toBeNull();
@@ -105,7 +108,7 @@ describe('AgentDetailsPage', () => {
     fixture.detectChanges();
 
     const pressedButton = fixture.nativeElement.querySelector(
-      'button[aria-label="Agregar a favoritos"]'
+      'button[aria-label="details.favorite"]'
     ) as HTMLButtonElement;
     expect(pressedButton.getAttribute('aria-pressed')).toBe('true');
   });

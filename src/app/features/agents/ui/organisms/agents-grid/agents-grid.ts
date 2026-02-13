@@ -16,4 +16,5 @@ export class AgentsGrid {
   readonly totalPages = input<number>(1);
   readonly previous = output<void>();
   readonly next = output<void>();
+  readonly toggleFavorite = output<AgentCardItem>();
 }

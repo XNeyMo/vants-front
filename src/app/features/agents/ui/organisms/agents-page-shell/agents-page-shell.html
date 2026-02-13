@@ -5,11 +5,16 @@
 		[highlight]="highlightKey()"
 		[description]="descriptionKey()"
 	></app-hero>
-	<app-agents-grid
-		[items]="items()"
-		[currentPage]="currentPage()"
-		[totalPages]="totalPages()"
-		(previous)="previous.emit()"
-		(next)="next.emit()"
-	></app-agents-grid>
+	@if (isEmpty()) {
+		<ng-content select="[empty-state]"></ng-content>
+	} @else {
+		<app-agents-grid
+			[items]="items()"
+			[currentPage]="currentPage()"
+			[totalPages]="totalPages()"
+			(previous)="previous.emit()"
+			(next)="next.emit()"
+			(toggleFavorite)="toggleFavorite.emit($event)"
+		></app-agents-grid>
+	}
 </main>

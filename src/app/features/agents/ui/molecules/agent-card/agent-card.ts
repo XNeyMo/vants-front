@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Subtitle } from '../../../../../shared/ui/atoms/subtitle/subtitle';
 import { Subsubtitle } from '../../../../../shared/ui/atoms/subsubtitle/subsubtitle';
 import { Button } from '../../../../../shared/ui/atoms/button/button';
@@ -16,4 +16,6 @@ export class AgentCard {
   readonly imageUrl = input<string>('');
   readonly href = input<string>('/');
   readonly delayMs = input<number>(0);
+  readonly isFavorite = input<boolean>(false);
+  readonly toggleFavorite = output<void>();
 }

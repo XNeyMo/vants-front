@@ -30,8 +30,8 @@
 				
 				<app-button
 					variant="favorite"
-					[label]="'details.addToFavorites' | transloco"
-					ariaLabel="Agregar a favoritos"
+					[label]="(isFavorite() ? 'details.favorite' : 'details.addToFavorites') | transloco"
+					[ariaLabel]="(isFavorite() ? 'details.favorite' : 'details.addToFavorites') | transloco"
 					[pressed]="isFavorite()"
 					(click)="toggleFavorite()"
 				>

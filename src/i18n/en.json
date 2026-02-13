@@ -33,6 +33,7 @@
   "details": {
     "backToRoster": "BACK TO ROSTER",
     "addToFavorites": "ADD TO FAVORITES",
+    "favorite": "FAVORITE",
     "abilities": "ABILITIES"
   }
 }

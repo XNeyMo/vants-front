@@ -6,4 +6,5 @@ export type AgentCardItem = {
   imageUrl: string;
   href: string;
   delayMs?: number;
+  isFavorite?: boolean;
 };

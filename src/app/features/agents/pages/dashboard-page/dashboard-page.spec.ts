@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
+import { provideStore } from '@ngrx/store';
 
 import { DashboardPage } from './dashboard-page';
 import { Link } from '../../../../shared/ui/atoms/link/link';
@@ -15,6 +16,7 @@ import { Description } from '../../../../shared/ui/atoms/description/description
 import { AgentsGrid } from '../../ui/organisms/agents-grid/agents-grid';
 import { AgentsPageModel } from '../../models/agents-page.model';
 import { GetAgentsPageUseCase } from '../../core/get-agents-page.use-case';
+import { favoritesFeature } from '../../state/favorites/favorites.reducer';
 
 describe('DashboardPage', () => {
   let component: DashboardPage;
@@ -66,6 +68,7 @@ describe('DashboardPage', () => {
       imports: [DashboardPage],
       providers: [
         provideRouter([]),
+        provideStore({ [favoritesFeature.name]: favoritesFeature.reducer }),
         {
           provide: ActivatedRoute,
           useValue: { data: of({ agentsPage: resolvedData }) }

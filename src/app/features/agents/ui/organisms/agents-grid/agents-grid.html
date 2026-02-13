@@ -8,6 +8,8 @@
 				[imageUrl]="item.imageUrl"
 				[href]="item.href"
 				[delayMs]="item.delayMs ?? 0"
+				[isFavorite]="item.isFavorite ?? false"
+				(toggleFavorite)="toggleFavorite.emit(item)"
 			></app-agent-card>
 		}
 	</div>

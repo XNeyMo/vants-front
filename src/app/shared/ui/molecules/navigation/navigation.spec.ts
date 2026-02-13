@@ -1,9 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
+import { provideStore } from '@ngrx/store';
 
 import { Navigation } from './navigation';
 import { Link } from '../../atoms/link/link';
 import { TranslocoPipeMock } from '../../../../i18n/transloco-pipe.mock';
+import { favoritesFeature } from '../../../../features/agents/state/favorites/favorites.reducer';
 
 describe('Navigation', () => {
   let component: Navigation;
@@ -24,7 +26,7 @@ describe('Navigation', () => {
 
     await TestBed.configureTestingModule({
       imports: [Navigation],
-      providers: [provideRouter([])]
+      providers: [provideRouter([]), provideStore({ [favoritesFeature.name]: favoritesFeature.reducer })]
     })
     .compileComponents();
 

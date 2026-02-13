@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 
-export type LinkVariant = 'primary';
-
 @Component({
   selector: 'app-link',
   imports: [RouterLink, RouterLinkActive, TranslocoModule],

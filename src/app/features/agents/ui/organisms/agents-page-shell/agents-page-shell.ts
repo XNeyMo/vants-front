@@ -16,6 +16,8 @@ export class AgentsPageShell {
   readonly items = input<AgentCardItem[]>([]);
   readonly currentPage = input<number>(1);
   readonly totalPages = input<number>(1);
+  readonly isEmpty = input<boolean>(false);
   readonly previous = output<void>();
   readonly next = output<void>();
+  readonly toggleFavorite = output<AgentCardItem>();
 }
