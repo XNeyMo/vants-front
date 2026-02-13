@@ -79,6 +79,17 @@ Desarrollé un **backend complementario en FastAPI** que actúa como proxy intel
 4. **Escalabilidad:** Preparado para agregar caché, rate limiting, etc.
 5. **Liderazgo técnico:** Toma de decisiones arquitectónicas fundamentadas
 
+## Demostración en Video
+
+Evidencia del funcionamiento de la plataforma:
+
+<video src="github/evidence.mp4" controls width="100%">
+  Tu navegador no soporta el elemento de video. 
+  <a href="github/evidence.mp4">Descargar video de demostración</a>
+</video>
+
+**Nota:** Si estás viendo esto en GitHub y el video no se reproduce, puedes [descargar el video aquí](evidence.mp4).
+
 ## Arquitectura
 
 El proyecto implementa una combinación de **Atomic Design** para componentes UI y **Clean Architecture (Hexagonal)** para lógica de negocio.
