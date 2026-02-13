@@ -1,14 +1,10 @@
 # ===============================
 # 1️⃣ Build Stage
 # ===============================
-FROM node:20-slim AS build
+FROM node:20-alpine AS build
 
-# Instalar dependencias del sistema necesarias
-RUN apt-get update && apt-get install -y \
-    python3 \
-    make \
-    g++ \
-    && rm -rf /var/lib/apt/lists/*
+# Instalar dependencias del sistema necesarias para compilar módulos nativos
+RUN apk add --no-cache python3 make g++
 
 WORKDIR /app
 
@@ -27,7 +23,7 @@ RUN npm run build
 # ===============================
 # 2️⃣ Production Stage
 # ===============================
-FROM node:20-slim
+FROM node:20-alpine
 
 WORKDIR /app
 
