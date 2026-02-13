@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { provideStore } from '@ngrx/store';
+import { provideStore, Store } from '@ngrx/store';
 
 import { AgentDetailsPage } from './agent-details-page';
 import { Link } from '../../../../shared/ui/atoms/link/link';
@@ -14,6 +14,7 @@ import { Header } from '../../../../shared/ui/organisms/header/header';
 import { AbilitiesSection } from '../../ui/organisms/abilities-section/abilities-section';
 import { Button } from '../../../../shared/ui/atoms/button/button';
 import { favoritesFeature } from '../../../agents/state/favorites/favorites.reducer';
+import { favoritesActions } from '../../../agents/state/favorites/favorites.actions';
 
 describe('AgentDetailsPage', () => {
   let component: AgentDetailsPage;
@@ -111,5 +112,28 @@ describe('AgentDetailsPage', () => {
       'button[aria-label="details.favorite"]'
     ) as HTMLButtonElement;
     expect(pressedButton.getAttribute('aria-pressed')).toBe('true');
+  });
+
+  it('should expose the role icon alt text', () => {
+    expect(component.roleIconAlt()).toBe('Sentinel role icon');
+  });
+
+  it('should dispatch favorites toggle with agent data', () => {
+    const store = TestBed.inject(Store);
+    const dispatchSpy = vi.spyOn(store, 'dispatch');
+
+    component.toggleFavorite();
+
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      favoritesActions.toggle({
+        agent: {
+          id: 'agent-1',
+          name: 'Sage',
+          role: 'Sentinel',
+          roleIconUrl: '/icons/role.png',
+          imageUrl: 'https://cdn.example.com/sage.png'
+        }
+      })
+    );
   });
 });

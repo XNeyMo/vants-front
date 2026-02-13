@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { provideStore } from '@ngrx/store';
+import { provideStore, Store } from '@ngrx/store';
 
 import { FavoritesPage } from './favorites-page';
 import { Link } from '../../../../shared/ui/atoms/link/link';
@@ -15,6 +15,7 @@ import { Description } from '../../../../shared/ui/atoms/description/description
 import { AgentsGrid } from '../../ui/organisms/agents-grid/agents-grid';
 import { GetFavoriteAgentsUseCase } from '../../core/get-favorite-agents.use-case';
 import { favoritesFeature } from '../../state/favorites/favorites.reducer';
+import { favoritesActions } from '../../state/favorites/favorites.actions';
 
 describe('FavoritesPage', () => {
   let component: FavoritesPage;
@@ -82,5 +83,32 @@ describe('FavoritesPage', () => {
     expect(element.querySelector('[empty-state]')).toBeTruthy();
     expect(element.textContent).toContain('agents.hero.favorites.title');
     expect(element.textContent).toContain('agents.hero.favorites.highlight');
+  });
+
+  it('should dispatch toggle action for a favorite agent', () => {
+    const store = TestBed.inject(Store);
+    const dispatchSpy = vi.spyOn(store, 'dispatch');
+
+    component.toggleFavorite({
+      id: '1',
+      name: 'Sage',
+      role: 'Sentinel',
+      roleIconUrl: '/icons/role.png',
+      imageUrl: '/icons/agent.png',
+      href: '/agents/1',
+      delayMs: 0
+    });
+
+    expect(dispatchSpy).toHaveBeenCalledWith(
+      favoritesActions.toggle({
+        agent: {
+          id: '1',
+          name: 'Sage',
+          role: 'Sentinel',
+          roleIconUrl: '/icons/role.png',
+          imageUrl: '/icons/agent.png'
+        }
+      })
+    );
   });
 });

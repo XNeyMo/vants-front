@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { AgentCard } from './agent-card';
 
@@ -36,5 +37,15 @@ describe('AgentCard', () => {
     expect(element.querySelector('app-button')).toBeTruthy();
     const roleIcon = element.querySelector('img[alt="Initiator"]') as HTMLImageElement;
     expect(roleIcon?.getAttribute('src')).toBe('/icons/role.png');
+  });
+
+  it('should emit toggleFavorite when the favorite button is clicked', () => {
+    const toggleSpy = vi.fn();
+    component.toggleFavorite.subscribe(toggleSpy);
+
+    const button = fixture.debugElement.query(By.css('app-button'));
+    button.triggerEventHandler('click', new MouseEvent('click'));
+
+    expect(toggleSpy).toHaveBeenCalledTimes(1);
   });
 });

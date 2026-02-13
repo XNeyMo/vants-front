@@ -47,5 +47,29 @@ describe('PaginationControls', () => {
     expect(buttons[1].disabled).toBe(true);
   });
 
-  
+  it('should emit previous when not on first page', () => {
+    fixture.componentRef.setInput('currentPage', 2);
+    fixture.componentRef.setInput('totalPages', 3);
+    fixture.detectChanges();
+
+    const previousSpy = vi.fn();
+    component.previous.subscribe(previousSpy);
+
+    component.onPrevious();
+
+    expect(previousSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should emit next when not on last page', () => {
+    fixture.componentRef.setInput('currentPage', 2);
+    fixture.componentRef.setInput('totalPages', 3);
+    fixture.detectChanges();
+
+    const nextSpy = vi.fn();
+    component.next.subscribe(nextSpy);
+
+    component.onNext();
+
+    expect(nextSpy).toHaveBeenCalledTimes(1);
+  });
 });

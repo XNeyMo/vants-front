@@ -27,7 +27,7 @@ describe('AgentsPageShell', () => {
 
     TestBed.overrideComponent(AgentsGrid, {
       set: {
-        template: '<div data-test="agents-grid"></div>'
+        template: '<div data-test="agents-grid"></div><button data-test="previous" (click)="previous.emit()"></button><button data-test="next" (click)="next.emit()"></button><button data-test="favorite" (click)="toggleFavorite.emit({ id: \'1\', name: \'Gekko\', role: \'Initiator\', roleIconUrl: \'/icons/role.png\', imageUrl: \'/icons/agent.png\', href: \'/agents/gekko\', delayMs: 0 })"></button>'
       }
     });
 
@@ -55,5 +55,40 @@ describe('AgentsPageShell', () => {
     const element = fixture.nativeElement as HTMLElement;
     expect(element.querySelector('app-hero')).toBeTruthy();
     expect(element.querySelector('app-agents-grid')).toBeTruthy();
+  });
+
+  it('should hide the grid when empty', () => {
+    fixture.componentRef.setInput('isEmpty', true);
+    fixture.detectChanges();
+
+    const element = fixture.nativeElement as HTMLElement;
+    expect(element.querySelector('app-agents-grid')).toBeNull();
+  });
+
+  it('should re-emit grid events', () => {
+    const previousSpy = vi.fn();
+    const nextSpy = vi.fn();
+    const favoriteSpy = vi.fn();
+
+    component.previous.subscribe(previousSpy);
+    component.next.subscribe(nextSpy);
+    component.toggleFavorite.subscribe(favoriteSpy);
+
+    const element = fixture.nativeElement as HTMLElement;
+    (element.querySelector('[data-test="previous"]') as HTMLButtonElement).click();
+    (element.querySelector('[data-test="next"]') as HTMLButtonElement).click();
+    (element.querySelector('[data-test="favorite"]') as HTMLButtonElement).click();
+
+    expect(previousSpy).toHaveBeenCalledTimes(1);
+    expect(nextSpy).toHaveBeenCalledTimes(1);
+    expect(favoriteSpy).toHaveBeenCalledWith({
+      id: '1',
+      name: 'Gekko',
+      role: 'Initiator',
+      roleIconUrl: '/icons/role.png',
+      imageUrl: '/icons/agent.png',
+      href: '/agents/gekko',
+      delayMs: 0
+    });
   });
 });

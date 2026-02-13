@@ -1,11 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, RouterLink, RouterLinkActive } from '@angular/router';
-import { provideStore } from '@ngrx/store';
+import { provideStore, Store } from '@ngrx/store';
 
 import { Navigation } from './navigation';
 import { Link } from '../../atoms/link/link';
 import { TranslocoPipeMock } from '../../../../i18n/transloco-pipe.mock';
 import { favoritesFeature } from '../../../../features/agents/state/favorites/favorites.reducer';
+import { favoritesActions } from '../../../../features/agents/state/favorites/favorites.actions';
 
 describe('Navigation', () => {
   let component: Navigation;
@@ -53,5 +54,26 @@ describe('Navigation', () => {
   it('should render icons for each item', () => {
     const icons = fixture.nativeElement.querySelectorAll('svg');
     expect(icons.length).toBe(2);
+  });
+
+  it('should render favorites badge when count is greater than zero', () => {
+    const store = TestBed.inject(Store);
+    store.dispatch(
+      favoritesActions.add({
+        agent: {
+          id: '1',
+          name: 'Sage',
+          role: 'Sentinel',
+          roleIconUrl: '/icons/role.png',
+          imageUrl: '/icons/agent.png'
+        }
+      })
+    );
+
+    fixture.detectChanges();
+
+    const badge = fixture.nativeElement.querySelector('[badge]') as HTMLElement;
+    expect(badge).toBeTruthy();
+    expect(badge.textContent).toContain('1');
   });
 });

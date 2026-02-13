@@ -21,6 +21,7 @@ import { favoritesFeature } from '../../state/favorites/favorites.reducer';
 describe('DashboardPage', () => {
   let component: DashboardPage;
   let fixture: ComponentFixture<DashboardPage>;
+  let getAgentsPageUseCase: { execute: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
     TestBed.overrideComponent(Link, {
@@ -64,6 +65,8 @@ describe('DashboardPage', () => {
       totalPages: 4
     };
 
+    getAgentsPageUseCase = { execute: vi.fn(() => of(resolvedData)) };
+
     await TestBed.configureTestingModule({
       imports: [DashboardPage],
       providers: [
@@ -75,7 +78,7 @@ describe('DashboardPage', () => {
         },
         {
           provide: GetAgentsPageUseCase,
-          useValue: { execute: () => of(resolvedData) }
+          useValue: getAgentsPageUseCase
         },
         {
           provide: TranslocoService,
@@ -104,5 +107,19 @@ describe('DashboardPage', () => {
     expect(element.querySelector('app-agents-grid')).toBeTruthy();
     expect(element.textContent).toContain('agents.hero.dashboard.title');
     expect(element.textContent).toContain('agents.hero.dashboard.highlight');
+  });
+
+  it('should request next page when available', () => {
+    component.goToNext();
+
+    expect(getAgentsPageUseCase.execute).toHaveBeenCalledWith(2, 8);
+  });
+
+  it('should not request previous page from page 1', () => {
+    getAgentsPageUseCase.execute.mockClear();
+
+    component.goToPrevious();
+
+    expect(getAgentsPageUseCase.execute).not.toHaveBeenCalled();
   });
 });
